@@ -15,6 +15,11 @@ The rest is up to you.
 
 Inspired by [@soveran's](twitter.com/soveran) [micromachine](https://github.com/soveran/micromachine) in Ruby.
 
+Documentation
+-------------
+
+[Online documentation](http://badboy.github.io/microstate/microstate)
+
 Usage
 -----
 
