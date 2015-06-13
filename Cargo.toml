@@ -1,0 +1,15 @@
+[package]
+
+name = "microstate"
+version = "0.1.0"
+authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+
+keywords = ["statemachine"]
+description = "Finite state machine, inspired by micromachine"
+
+readme = "README.md"
+license = "MIT"
+
+homepage = "https://github.com/badboy/microstate"
+documentation = "https://badboy.github.io/microstate"
+repository = "https://github.com/badboy/microstate"

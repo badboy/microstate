@@ -1,0 +1,13 @@
+language: rust
+sudo: false
+
+script:
+  - cargo test
+  - cargo doc --no-deps
+
+after_success:
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
+
+env:
+  global:
+    secure: C3I2nOFM+H+2W9/EFVPUCL6L9ZCcoy3XzgoPF/yVSjmAGjP//tgMyMhWp3YfmHUP/2jTIwC27uqxVVSckxHy2WesnuhZyt2IlKrVTTD5AXyqwmQTHeKOz4d8DGrZ2tVKMgU23oik0TTFWEi5xG8bnM6co44bFwtVShMRBkPdAFA=
