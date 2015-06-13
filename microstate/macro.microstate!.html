@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `microstate!` macro in crate `microstate`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, microstate!">
+
+    <title>microstate::microstate! - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>microstate</a></p><script>window.sidebarCurrent = {name: 'microstate!', ty: 'macro', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content macro">
+<h1 class='fqn'><span class='in-band'><a href='index.html'>microstate</a>::<wbr><a class='macro' href=''>microstate!</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-4' href='../src/microstate/lib.rs.html#36-80'>[src]</a></span></h1>
+<pre class='rust macro'>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>microstate</span> (
+  (
+      <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>machine</span>:<span class='ident'>ident</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>initial</span>:<span class='ident'>ident</span> }
+      <span class='ident'>states</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>states</span>:<span class='ident'>ident</span>),<span class='op'>*</span> }
+
+      $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>meth</span>:<span class='ident'>ident</span> {
+          $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>from</span>:<span class='ident'>ident</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>to</span>:<span class='ident'>ident</span>)<span class='op'>*</span>
+      })<span class='op'>*</span>
+  ) <span class='op'>=&gt;</span> (
+      <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_snake_case</span>)]</span>
+      <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>machine</span> {
+          <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Eq</span>,<span class='ident'>Debug</span>)]</span>
+          <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>State</span> {
+              <span class='ident'>__InvalidState__</span>, <span class='comment'>// Just be able to match _ further down</span>
+              $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>states</span>),<span class='op'>*</span>
+          }
+          <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>PartialEq</span>,<span class='ident'>Eq</span>,<span class='ident'>Debug</span>)]</span>
+          <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Machine</span> {
+              <span class='ident'>state</span>: <span class='ident'>State</span>,
+          }
+
+          <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>Machine</span> {
+              <span class='ident'>Machine</span>::<span class='ident'>new</span>()
+          }
+
+          <span class='kw'>impl</span> <span class='ident'>Machine</span> {
+              <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>Machine</span> {
+                  <span class='ident'>Machine</span> {
+                      <span class='ident'>state</span>: <span class='ident'>State</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>initial</span>
+                  }
+              }
+
+              <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>state</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>State</span> {
+                  <span class='self'>self</span>.<span class='ident'>state</span>.<span class='ident'>clone</span>()
+              }
+
+              $(<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>meth</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>State</span><span class='op'>&gt;</span> {
+                  <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>state</span> {
+                      $( <span class='ident'>State</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>from</span> <span class='op'>=&gt;</span> { <span class='self'>self</span>.<span class='ident'>state</span> <span class='op'>=</span> <span class='ident'>State</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>to</span>; <span class='prelude-val'>Some</span>(<span class='ident'>State</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>to</span>) } ),<span class='op'>*</span>
+                          _ <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>
+                  }
+              })<span class='op'>*</span>
+          }
+      }
+));
+</pre>
+<div class='docblock'><p>Create a new state machine</p>
+
+<p>It takes a name, the initial value, all possible states
+and the transitions.</p>
+
+<p>See the main documentation for a proper example.</p>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "microstate";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
