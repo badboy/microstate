@@ -13,7 +13,7 @@ A finite state machine is fully defined by a list of states and the transitions 
 And that's all this crate does: it let's you define the states and transitions.
 The rest is up to you.
 
-Inspired by [@soveran's](twitter.com/soveran) [micromachine](https://github.com/soveran/micromachine) in Ruby.
+Inspired by [@soveran](https://twitter.com/soveran)'s [micromachine](https://github.com/soveran/micromachine) in Ruby.
 
 Documentation
 -------------
