@@ -2,6 +2,8 @@
 
 set -o errexit -o nounset
 
+env
+
 rev=$(git rev-parse --short HEAD)
 
 cd target/doc
