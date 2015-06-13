@@ -6,7 +6,7 @@ Minimal Finite State Machine.
 Description
 -----------
 
-A finite state machines is in only one state at a time.
+A finite state machine is in only one state at a time.
 From there it can change from one state to another when initiated by an triggering event: the transition.
 A finite state machine is fully defined by a list of states and the transitions triggering a change from one state to another.
 
