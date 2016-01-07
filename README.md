@@ -1,6 +1,9 @@
 MicroState
 =========
 
+[![Build Status](https://travis-ci.org/badboy/microstate.svg?branch=master)](https://travis-ci.org/badboy/microstate)
+[![crates.io](http://meritbadge.herokuapp.com/microstate)](https://crates.io/crates/microstate)
+
 Minimal Finite State Machine.
 
 Description
