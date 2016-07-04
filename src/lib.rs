@@ -46,6 +46,7 @@ macro_rules! microstate (
       pub mod $machine {
           #[derive(Clone,PartialEq,Eq,Debug)]
           pub enum State {
+              #[doc(hidden)]
               __InvalidState__, // Just be able to match _ further down
               $($states),*
           }
