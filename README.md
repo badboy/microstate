@@ -10,7 +10,7 @@ Description
 -----------
 
 A finite state machine is in only one state at a time.
-From there it can change from one state to another when initiated by an triggering event: the transition.
+From there it can change from one state to another when initiated by a triggering event: the transition.
 A finite state machine is fully defined by a list of states and the transitions triggering a change from one state to another.
 
 And that's all this crate does: it let's you define the states and transitions.
@@ -59,7 +59,7 @@ machine.confirm(); // => Some(Confirmed)
 machine.state();   // => Confirmed
 
 machine.ignore();  // => None
-machine.state();   // => Confirmed
+machine.state();   // => Ignored
 
 machine.reset();   // => Some(New)
 machine.state();   // => New
