@@ -13,7 +13,7 @@ A finite state machine is in only one state at a time.
 From there it can change from one state to another when initiated by an triggering event: the transition.
 A finite state machine is fully defined by a list of states and the transitions triggering a change from one state to another.
 
-And that's all this crate does: it let's you define the states and transitions.
+And that's all this crate does: it lets you define the states and transitions.
 The rest is up to you.
 
 Inspired by [@soveran](https://twitter.com/soveran)'s [micromachine](https://github.com/soveran/micromachine) in Ruby.
